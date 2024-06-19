@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+<style>
+main {
+    max-width: 120ch;
+    margin-inline: auto;
+    box-shadow: 0 0 15px 15px lightgrey;
+    padding: 1rem 2rem;
+}
+script.output {
+    display: block;
+}
+
+div.output,
+script.output {
+	display: block;
+    font-family: "Consolas", monospace;
+    white-space: pre-wrap;
+	padding: 0 2rem 1rem 2rem;
+	border 1px dotted grey;
+	background: #eee;
+	border-radius: 0.5rem;
+	margin: 1rem 0;
+	border: none;
+}
+
+span.output__typed {
+    color: blue;
+}
+
+span.output__highlight {
+    background: yellow;
+}
+
+span.output__note {
+    font-family: serif;
+	font-style: italic;
+    color: orange;
+}
+
+span.output__etc {
+    font-family: serif;
+	font-style: italic;
+}
+</style>
+
+<script>
+window.addEventListener("load", () => {
+    document.querySelectorAll("script.output.colourise").forEach(div => {
+        const REPLACEMENTS = { "&": "&amp;", "<": "&lt;", ">": "&gt;", }
+        const STYLES = {
+            "&lt;__typed__&gt;": "<span class=\"output__typed\">",
+            "&lt;/__typed__&gt;": "</span>",
+            "&lt;__context__&gt;": "<span class=\"output__context\">",
+            "&lt;/__context__&gt;": "</span>",
+            "&lt;__highlight__&gt;": "<span class=\"output__highlight\">",
+            "&lt;/__highlight__&gt;": "</span>",
+            "&lt;__note__&gt;": "<span class=\"output__note\">",
+            "&lt;/__note__&gt;": "</span>",
+            "&lt;__etc__&gt;": "<span class=\"output__etc\">",
+            "&lt;/__etc__&gt;": "</span>",
+        }
+        let text = div.innerText
+        for (r in REPLACEMENTS) {
+            text = text.replaceAll(r, REPLACEMENTS[r])
+        }
+        for (r in STYLES) {
+            text = text.replaceAll(r, STYLES[r])
+        }
+        const newdiv = document.createElement("div")
+        newdiv.classList.add("output")
+        newdiv.innerHTML = text
+        div.parentElement.insertBefore(newdiv, div)
+        div.remove()
+    })
+})
+</script>
+
+</head>
+
+<body>
+<h1>Heading</h1>
+
+<main>
+<script class="output colourise" type="text/plain">
+This is some output
+
+I can put &amp; in here and expect it to display
+
+I can also <__typed__>type some</__typed__> stuff and <__highlight__>highlight some other stuff</__highlight__>
+<span>also tags</span>
+
+</script>
+</main>
+
+</body>
+
+</html >
