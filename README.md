@@ -120,5 +120,5 @@ The Javascript finds all <script>...</script> sections with both "output" and "c
 
 This is what the code below looks like:-
 
-![Sample Image](sample.jpg)
+![Sample Image](sample.png)
 
