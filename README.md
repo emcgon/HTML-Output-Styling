@@ -110,7 +110,7 @@ The block of text needs both the "output" and "colourise" classes applied:-
 
 I can also embed <b>HTML tags</b> 
 
-<__typed__>I type this</__typed__> and the router returned this
+<__typed__>I typed this</__typed__> and the router returned this
 
 This is the <__highlight__>interesting part</__highlight__> of the output <__note__>and this is a note about it</__note__>
 </script>
